@@ -1,0 +1,211 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 4703 >>
+stream
+0.360 0.300 0.780 rg 0 784 612 8 re f
+0.430 0.440 0.530 rg BT /F2 8 Tf 1 0 0 1 48.0 758.0 Tm (AI STUDYMATE  /  PROJECT REPORT) Tj ET
+0.880 0.880 0.920 RG 0.7 w 48 746 m 564 746 l S
+0.430 0.440 0.530 rg BT /F1 8 Tf 1 0 0 1 48.0 30.0 Tm (Sunday Project 6  |  HTML, CSS & JavaScript) Tj ET
+0.430 0.440 0.530 rg BT /F1 8 Tf 1 0 0 1 517.0 30.0 Tm (Page 1) Tj ET
+0.950 0.940 1.000 rg 48 598 516 124 re f
+0.120 0.580 0.520 rg BT /F2 9 Tf 1 0 0 1 68.0 687.0 Tm (SUNDAY PROJECT 6) Tj ET
+0.130 0.140 0.230 rg BT /F2 30 Tf 1 0 0 1 68.0 649.0 Tm (AI StudyMate) Tj ET
+0.430 0.440 0.530 rg BT /F1 13 Tf 1 0 0 1 69.0 623.0 Tm (Smart Study Planner & Learning Assistant) Tj ET
+0.430 0.440 0.530 rg BT /F1 9 Tf 1 0 0 1 69.0 608.0 Tm (A responsive, browser-based study organization app) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 560.0 Tm (Abstract) Tj ET
+0.120 0.580 0.520 RG 2 w 48 553 m 112 553 l S
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 536.0 Tm (AI StudyMate is a student-focused web application that brings study planning, task tracking,) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 521.0 Tm (note-taking, flashcard practice, quizzes, and progress monitoring into one workspace. Students) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 506.0 Tm (can organize subjects and topics, set daily study targets, track focus sessions, and review) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 491.0 Tm (quiz results through a dashboard. Built with HTML, CSS, and JavaScript, the app stores) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 476.0 Tm (information in the browser using localStorage so saved data remains available after a page) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 461.0 Tm (refresh in the same browser. The current version provides local study support; it does not) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 446.0 Tm (connect to an external AI service.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 418.0 Tm (Problem statement) Tj ET
+0.120 0.580 0.520 RG 2 w 48 411 m 112 411 l S
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 394.0 Tm (Students often manage assignments, revision plans, notes, and self-testing across separate) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 379.0 Tm (tools or informal reminders. This can make deadlines and progress difficult to see, reduce) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 364.0 Tm (consistency, and make it harder to know what to study next. AI StudyMate addresses this) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 349.0 Tm (organization problem by combining core study workflows in a single, accessible web app.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 321.0 Tm (Project objectives) Tj ET
+0.120 0.580 0.520 RG 2 w 48 314 m 112 314 l S
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 297.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 297.0 Tm (Provide a simple place to plan subjects, topics, target dates, and daily study hours.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 281.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 281.0 Tm (Make it easy to create tasks, track completion, and identify pending work.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 265.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 265.0 Tm (Support active recall with saved notes and question-and-answer flashcards.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 249.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 249.0 Tm (Offer a quick multiple-choice knowledge check with an immediate score.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 233.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 233.0 Tm (Show study time, task completion, and quiz performance in a progress dashboard.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 217.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 217.0 Tm (Persist data locally and offer a responsive interface with dark mode.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 191.0 Tm (Intended users & technology) Tj ET
+0.120 0.580 0.520 RG 2 w 48 184 m 112 184 l S
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 167.0 Tm (Intended users: students who want a lightweight personal tool for planning and reviewing their) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 153.0 Tm (studies.) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 136.0 Tm (Technology: HTML for structure, CSS for responsive styling and themes, and vanilla JavaScript) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 122.0 Tm (for interactions, charts, timer logic, and localStorage persistence.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 5137 >>
+stream
+0.360 0.300 0.780 rg 0 784 612 8 re f
+0.430 0.440 0.530 rg BT /F2 8 Tf 1 0 0 1 48.0 758.0 Tm (AI STUDYMATE  /  PROJECT REPORT) Tj ET
+0.880 0.880 0.920 RG 0.7 w 48 746 m 564 746 l S
+0.430 0.440 0.530 rg BT /F1 8 Tf 1 0 0 1 48.0 30.0 Tm (Sunday Project 6  |  HTML, CSS & JavaScript) Tj ET
+0.430 0.440 0.530 rg BT /F1 8 Tf 1 0 0 1 517.0 30.0 Tm (Page 2) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 730.0 Tm (Core features) Tj ET
+0.120 0.580 0.520 RG 2 w 48 723 m 112 723 l S
+0.430 0.440 0.530 rg BT /F1 9 Tf 1 0 0 1 48.0 706.0 Tm (The app is organized around a practical study cycle: plan, do, review, and reflect.) Tj ET
+0.130 0.140 0.230 rg BT /F2 10 Tf 1 0 0 1 48.0 690.0 Tm (1. Smart study planner) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 674.0 Tm (Add subjects, topics, study dates, and daily hour targets. The dashboard displays each) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 660.0 Tm (subject's target and tracked study time for today.) Tj ET
+0.130 0.140 0.230 rg BT /F2 10 Tf 1 0 0 1 48.0 643.0 Tm (2. Task manager) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 627.0 Tm (Create tasks with optional subject and due date, mark them complete, and remove tasks that are) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 613.0 Tm (no longer needed. Pending and completed counts appear in the dashboard.) Tj ET
+0.130 0.140 0.230 rg BT /F2 10 Tf 1 0 0 1 48.0 596.0 Tm (3. Notes & flashcards) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 580.0 Tm (Save short notes or create question-and-answer flashcards. Navigate between cards and click a) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 566.0 Tm (card to reveal its answer.) Tj ET
+0.130 0.140 0.230 rg BT /F2 10 Tf 1 0 0 1 48.0 549.0 Tm (4. Quiz mode) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 533.0 Tm (Answer a built-in set of multiple-choice questions and see the score immediately. Quiz) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 519.0 Tm (attempts are saved for progress tracking.) Tj ET
+0.130 0.140 0.230 rg BT /F2 10 Tf 1 0 0 1 48.0 502.0 Tm (5. Progress dashboard) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 486.0 Tm (Review completed tasks, tracked time, latest and average quiz scores, and visual charts for) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 472.0 Tm (recent study sessions and quiz attempts.) Tj ET
+0.130 0.140 0.230 rg BT /F2 10 Tf 1 0 0 1 48.0 455.0 Tm (6. Focus timer & personalization) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 439.0 Tm (Run a focus session and associate it with a subject. Switch between light and dark themes; the) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 48.0 425.0 Tm (layout adapts to smaller screens.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 398.0 Tm (Typical user workflow) Tj ET
+0.120 0.580 0.520 RG 2 w 48 391 m 112 391 l S
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 374.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 374.0 Tm (Add a subject with topics, a target study date, and a daily hour goal.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 358.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 358.0 Tm (Break the subject into tasks and add due dates where useful.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 342.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 342.0 Tm (Start a focus session, choose a subject, and finish the session to record study time.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 326.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 326.0 Tm (Save notes and create flashcards to review key concepts.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 310.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 310.0 Tm (Take the quiz to practise recall and receive an instant result.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 294.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 294.0 Tm (Check the dashboard to review tasks, study time, and quiz progress; refresh the page and) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 280.0 Tm (continue later.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 254.0 Tm (Functional requirements) Tj ET
+0.120 0.580 0.520 RG 2 w 48 247 m 112 247 l S
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 230.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 230.0 Tm (The app shall allow users to create and remove subjects, tasks, notes, and flashcards.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 214.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 214.0 Tm (The app shall allow tasks to be marked complete and provide a study timer.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 198.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 198.0 Tm (The app shall calculate quiz scores and display progress summaries and charts.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 182.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 182.0 Tm (The app shall save and restore supported data using browser localStorage.) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 5884 >>
+stream
+0.360 0.300 0.780 rg 0 784 612 8 re f
+0.430 0.440 0.530 rg BT /F2 8 Tf 1 0 0 1 48.0 758.0 Tm (AI STUDYMATE  /  PROJECT REPORT) Tj ET
+0.880 0.880 0.920 RG 0.7 w 48 746 m 564 746 l S
+0.430 0.440 0.530 rg BT /F1 8 Tf 1 0 0 1 48.0 30.0 Tm (Sunday Project 6  |  HTML, CSS & JavaScript) Tj ET
+0.430 0.440 0.530 rg BT /F1 8 Tf 1 0 0 1 517.0 30.0 Tm (Page 3) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 730.0 Tm (Quality attributes) Tj ET
+0.120 0.580 0.520 RG 2 w 48 723 m 112 723 l S
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 706.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 706.0 Tm (Usability: clear navigation, readable labels, and short forms support quick everyday use.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 690.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 690.0 Tm (Responsive design: the layout adjusts for desktop and mobile screen sizes.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 674.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 674.0 Tm (Accessibility basics: semantic form controls, visible labels, and accessible names on key) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 660.0 Tm (buttons.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 644.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 644.0 Tm (Performance: the app is a single static HTML file and needs no server or package) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 630.0 Tm (installation.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 614.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 614.0 Tm (Privacy: study records are stored in the user's browser and are not sent to a backend) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 600.0 Tm (service.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 574.0 Tm (Data storage & scope) Tj ET
+0.120 0.580 0.520 RG 2 w 48 567 m 112 567 l S
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 550.0 Tm (StudyMate saves subjects, tasks, notes, flashcards, completed focus sessions, quiz scores, and) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 535.0 Tm (theme preference in localStorage. Data is tied to the browser and device used to open the) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 520.0 Tm (file. Clearing browser site data or moving to another browser may remove or leave the saved) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 505.0 Tm (data behind. The current project has no user accounts, cloud synchronization, external) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 490.0 Tm (database, or AI API integration.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 462.0 Tm (Limitations) Tj ET
+0.120 0.580 0.520 RG 2 w 48 455 m 112 455 l S
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 438.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 438.0 Tm (Quiz content is a small, fixed set of sample questions rather than a subject-specific) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 424.0 Tm (question bank.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 408.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 408.0 Tm (The app does not generate AI explanations, personalized plans, or questions; the AI name) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 394.0 Tm (describes the project concept, not a connected AI feature.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 378.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 378.0 Tm (Progress is limited to data recorded in the current browser; there is no export, backup, or) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 364.0 Tm (cross-device sync feature.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 348.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 348.0 Tm (Tracked time is based on completed timer sessions and should be treated as a personal) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 334.0 Tm (estimate.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 308.0 Tm (Future enhancements) Tj ET
+0.120 0.580 0.520 RG 2 w 48 301 m 112 301 l S
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 284.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 284.0 Tm (Add an optional AI API integration for study suggestions, summaries, and question) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 270.0 Tm (generation, with secure server-side handling of API credentials.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 254.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 254.0 Tm (Allow users to customize quizzes by subject and difficulty, and review explanations after) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 240.0 Tm (each answer.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 224.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 224.0 Tm (Add data export/import, cloud synchronization, and optional accounts.) Tj ET
+0.120 0.580 0.520 rg BT /F2 10 Tf 1 0 0 1 53.0 208.0 Tm (-) Tj ET
+0.130 0.140 0.230 rg BT /F1 9.5 Tf 1 0 0 1 66.0 208.0 Tm (Add reminders, calendar views, accessibility refinements, and automated tests.) Tj ET
+0.360 0.300 0.780 rg BT /F2 16 Tf 1 0 0 1 48.0 182.0 Tm (Conclusion) Tj ET
+0.120 0.580 0.520 RG 2 w 48 175 m 112 175 l S
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 158.0 Tm (AI StudyMate demonstrates how a lightweight front-end application can support practical study) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 143.0 Tm (habits by joining planning, focused work, active recall, quizzes, and progress tracking. Its) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 128.0 Tm (single-file format makes it easy to run and demonstrate, while its modular features provide a) Tj ET
+0.130 0.140 0.230 rg BT /F1 10 Tf 1 0 0 1 48.0 113.0 Tm (foundation for future enhancements.) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000134 00000 n 
+0000000231 00000 n 
+0000000333 00000 n 
+0000005088 00000 n 
+0000005224 00000 n 
+0000010413 00000 n 
+0000010549 00000 n 
+0000016485 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+16622
+%%EOF
