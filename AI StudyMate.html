@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI StudyMate — Your study space</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6fb;
+      --surface: #fff;
+      --surface-soft: #f8f8fc;
+      --text: #22233b;
+      --muted: #7e8098;
+      --line: #ececf3;
+      --primary: #7062df;
+      --primary-dark: #5a4cc7;
+      --primary-soft: #efedff;
+      --teal: #28a896;
+      --teal-soft: #e3f7f3;
+      --orange: #f1a44b;
+      --orange-soft: #fff2df;
+      --pink: #e67ea2;
+      --pink-soft: #fff0f5;
+      --shadow: 0 12px 36px rgba(39, 38, 77, .06);
+      --radius: 18px;
+    }
+
+    body.dark {
+      color-scheme: dark;
+      --bg: #171824;
+      --surface: #202131;
+      --surface-soft: #292a3d;
+      --text: #f0eff8;
+      --muted: #a3a3ba;
+      --line: #35364a;
+      --primary: #a096ff;
+      --primary-dark: #8276ed;
+      --primary-soft: #34314e;
+      --teal-soft: #233c3c;
+      --orange-soft: #443626;
+      --pink-soft: #442d3a;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .app { min-height: 100vh; display: grid; grid-template-columns: 250px minmax(0, 1fr); }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--line);
+      padding: 26px 17px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .brand { display: flex; gap: 11px; align-items: center; padding: 0 9px; }
+    .brand-mark {
+      width: 39px; height: 39px; display: grid; place-items: center;
+      color: white; border-radius: 13px; font-size: 20px;
+      background: linear-gradient(135deg, #897df3, #5d4fd0);
+    }
+    .brand strong { display: block; font-size: 16px; letter-spacing: -.4px; }
+    .brand small { color: var(--muted); font-size: 11px; }
+    .nav-label { color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; font-size: 10px; font-weight: 800; padding: 0 12px; }
+    .nav { display: grid; gap: 5px; }
+    .nav button {
+      border: 0; background: transparent; color: var(--muted); text-align: left;
+      border-radius: 11px; padding: 11px 12px; display: flex; align-items: center; gap: 12px;
+      transition: .18s ease;
+    }
+    .nav button:hover, .nav button.active { background: var(--primary-soft); color: var(--primary); }
+    .nav-icon { width: 20px; text-align: center; font-size: 17px; }
+    .sidebar-bottom { margin-top: auto; }
+    .focus-card { background: var(--primary-soft); border-radius: 15px; padding: 15px; }
+    .focus-card strong { display: block; margin-bottom: 4px; }
+    .focus-card p { color: var(--muted); font-size: 12px; margin: 0 0 12px; }
+    .main { min-width: 0; padding: 28px clamp(18px, 4vw, 52px) 50px; max-width: 1600px; width: 100%; margin: 0 auto; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 30px; }
+    .eyebrow { color: var(--muted); font-size: 13px; }
+    h1 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -1px; margin: 3px 0 0; }
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+    .icon-button, .avatar {
+      border: 1px solid var(--line); background: var(--surface); color: var(--text);
+      width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center;
+    }
+    .avatar { border: 0; background: var(--primary-soft); color: var(--primary); font-weight: 800; }
+    .mobile-nav { display: none; }
+    .view { display: none; }
+    .view.active { display: block; }
+    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 24px 0 15px; }
+    .section-heading h2 { margin: 0; font-size: 18px; letter-spacing: -.4px; }
+    .section-heading p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .grid { display: grid; gap: 16px; }
+    .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .two-col { grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); }
+    .card, .stat-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .stat-card { padding: 17px; min-width: 0; }
+    .stat-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .stat-label { color: var(--muted); font-size: 12px; }
+    .stat-icon { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 11px; }
+    .stat-value { font-size: 27px; letter-spacing: -.8px; font-weight: 750; margin-top: 9px; }
+    .stat-note { color: var(--muted); font-size: 11px; margin-top: 1px; }
+    .card { padding: 20px; min-width: 0; }
+    .card h3 { margin: 0; font-size: 15px; letter-spacing: -.2px; }
+    .card-subtitle { margin: 4px 0 16px; color: var(--muted); font-size: 12px; }
+    .progress-track { height: 8px; background: var(--surface-soft); border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: inherit; background: var(--primary); transition: width .3s; }
+    .subject-row { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .subject-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .subject-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 9px; }
+    .subject-head strong { font-size: 13px; }
+    .subject-head span { color: var(--muted); font-size: 11px; }
+    .task-list { display: grid; gap: 11px; }
+    .task-item { display: flex; gap: 11px; align-items: flex-start; }
+    .task-item input { accent-color: var(--primary); margin: 4px 0 0; width: 16px; height: 16px; }
+    .task-copy { flex: 1; min-width: 0; }
+    .task-copy strong { display: block; font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
+    .task-copy span { color: var(--muted); font-size: 11px; }
+    .task-item.done .task-copy strong { text-decoration: line-through; color: var(--muted); }
+    .task-delete, .text-button { border: 0; background: none; color: var(--muted); padding: 2px 5px; }
+    .task-delete:hover, .text-button:hover { color: #d45f78; }
+    .empty { color: var(--muted); font-size: 13px; text-align: center; padding: 22px 10px; }
+    .insight { background: linear-gradient(135deg, var(--primary-soft), var(--surface)); border: 1px solid var(--line); border-radius: var(--radius); padding: 19px; }
+    .insight-label { color: var(--primary); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; }
+    .insight p { font-size: 13px; margin: 9px 0 0; }
+    .button {
+      border: 0; border-radius: 11px; background: var(--primary); color: white;
+      font-weight: 700; font-size: 12px; padding: 10px 14px; transition: .15s ease;
+    }
+    .button:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .button.secondary { background: var(--surface-soft); color: var(--text); border: 1px solid var(--line); }
+    .button.secondary:hover { background: var(--primary-soft); color: var(--primary); }
+    .button.small { padding: 8px 11px; }
+    .button.danger { background: #fce9ed; color: #b94360; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+    .field { display: grid; gap: 6px; min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: var(--muted); font-size: 11px; font-weight: 700; }
+    .field input, .field select, .field textarea {
+      width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+      color: var(--text); padding: 10px 11px; outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+    .field textarea { resize: vertical; min-height: 88px; }
+    .form-actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; }
+    .item-list { display: grid; gap: 10px; }
+    .planner-item, .note-item {
+      background: var(--surface-soft); border-radius: 13px; padding: 14px;
+    }
+    .planner-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .planner-top strong { font-size: 14px; }
+    .planner-top p, .note-item p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .pill { display: inline-flex; align-items: center; background: var(--primary-soft); color: var(--primary); padding: 4px 8px; border-radius: 99px; font-size: 10px; font-weight: 700; }
+    .note-item h4 { font-size: 13px; margin: 0; }
+    .note-item .note-meta { color: var(--muted); font-size: 10px; margin-top: 9px; }
+    .chart-wrap { height: 230px; position: relative; }
+    canvas { width: 100%; height: 100%; display: block; }
+    .timer { text-align: center; padding: 13px 5px 8px; }
+    .timer-display { font-variant-numeric: tabular-nums; font-weight: 750; font-size: 45px; letter-spacing: -2px; margin: 8px 0 15px; }
+    .timer-actions { display: flex; justify-content: center; gap: 9px; }
+    .flashcard {
+      min-height: 190px; display: grid; place-items: center; text-align: center;
+      background: var(--primary-soft); border-radius: 16px; padding: 25px; cursor: pointer;
+      transition: transform .2s; user-select: none;
+    }
+    .flashcard:hover { transform: translateY(-2px); }
+    .flashcard small { display: block; color: var(--primary); text-transform: uppercase; font-weight: 800; letter-spacing: .8px; font-size: 10px; margin-bottom: 10px; }
+    .flashcard strong { font-size: 18px; }
+    .flashcard-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; color: var(--muted); font-size: 12px; }
+    .quiz-question { border-bottom: 1px solid var(--line); padding: 14px 0; }
+    .quiz-question:first-child { padding-top: 0; }
+    .quiz-question:last-child { border: 0; }
+    .quiz-question h4 { font-size: 13px; margin: 0 0 9px; }
+    .choice { display: flex; align-items: center; gap: 8px; padding: 5px 0; color: var(--muted); font-size: 12px; }
+    .choice input { accent-color: var(--primary); }
+    .result { display: none; border-radius: 11px; padding: 12px; background: var(--teal-soft); color: var(--teal); font-weight: 700; font-size: 13px; margin-top: 14px; }
+    .result.show { display: block; }
+    .mobile-nav button { border: 0; background: none; color: var(--muted); padding: 8px 4px; font-size: 10px; }
+    .mobile-nav button.active { color: var(--primary); }
+    .mobile-nav span { display: block; font-size: 18px; margin-bottom: 2px; }
+    @media (max-width: 1050px) {
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .app { display: block; padding-bottom: 68px; }
+      .sidebar { display: none; }
+      .main { padding: 19px 15px 30px; }
+      .topbar { margin-bottom: 21px; }
+      .mobile-nav {
+        display: flex; position: fixed; z-index: 10; bottom: 0; left: 0; right: 0;
+        justify-content: space-around; background: var(--surface); border-top: 1px solid var(--line);
+        padding: 7px 4px calc(7px + env(safe-area-inset-bottom));
+      }
+      .stats { gap: 10px; }
+      .stat-card { padding: 13px; }
+      .stat-value { font-size: 23px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full, .form-actions { grid-column: auto; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">✦</div>
+        <div><strong>StudyMate</strong><small>Your space to learn</small></div>
+      </div>
+      <div>
+        <div class="nav-label">Workspace</div>
+        <nav class="nav" id="sideNav">
+          <button class="active" data-view="dashboard"><span class="nav-icon">⌂</span>Dashboard</button>
+          <button data-view="planner"><span class="nav-icon">▦</span>Study planner</button>
+          <button data-view="tasks"><span class="nav-icon">☑</span>Task manager</button>
+          <button data-view="notes"><span class="nav-icon">▤</span>Notes & flashcards</button>
+          <button data-view="quiz"><span class="nav-icon">✎</span>Quiz mode</button>
+          <button data-view="progress"><span class="nav-icon">▥</span>Progress</button>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="focus-card">
+          <strong>Small steps count 🌱</strong>
+          <p>Build a little momentum today. Pick one task and get started.</p>
+          <button class="button small" data-go="tasks">View my tasks</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow" id="todayLabel"></div>
+          <h1 id="pageTitle">Good to see you!</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
+          <div class="avatar" aria-label="Student profile">S</div>
+        </div>
+      </header>
+
+      <section class="view active" id="view-dashboard">
+        <div class="grid stats">
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Tasks completed</span><span class="stat-icon" style="background:var(--teal-soft)">✓</span></div>
+            <div class="stat-value" id="statTasks">0 / 0</div><div class="stat-note">Keep your momentum going</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Study time</span><span class="stat-icon" style="background:var(--primary-soft)">◷</span></div>
+            <div class="stat-value" id="statHours">0h</div><div class="stat-note">Total time tracked</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Latest quiz score</span><span class="stat-icon" style="background:var(--orange-soft)">✦</span></div>
+            <div class="stat-value" id="statQuiz">—</div><div class="stat-note">Your latest practice result</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Study subjects</span><span class="stat-icon" style="background:var(--pink-soft)">▤</span></div>
+            <div class="stat-value" id="statSubjects">0</div><div class="stat-note">Topics in your planner</div>
+          </article>
+        </div>
+
+        <div class="section-heading">
+          <div><h2>Your study overview</h2><p>A little progress every day adds up.</p></div>
+          <button class="button small" data-go="planner">+ Plan a subject</button>
+        </div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>Subject progress</h3><p class="card-subtitle">Your daily targets at a glance</p>
+            <div id="subjectProgress"></div>
+          </article>
+          <article class="card">
+            <h3>Focus session</h3><p class="card-subtitle">Track time spent studying</p>
+            <div class="timer">
+              <div class="timer-display" id="timerDisplay">00:00:00</div>
+              <div class="field" style="max-width:260px;margin:0 auto 13px;text-align:left">
+                <label for="timerSubject">Study subject</label><select id="timerSubject"></select>
+              </div>
+              <div class="timer-actions">
+                <button class="button" id="timerStart">Start session</button>
+                <button class="button secondary" id="timerStop" disabled>Finish</button>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="section-heading" style="margin:0 0 14px">
+              <div><h3>Today's tasks</h3><p class="card-subtitle" style="margin-bottom:0">Your next small wins</p></div>
+              <button class="text-button" data-go="tasks">See all →</button>
+            </div>
+            <div class="task-list" id="dashboardTasks"></div>
+          </article>
+          <aside class="insight">
+            <div class="insight-label">✦ StudyMate tip</div>
+            <p id="studyTip"></p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-planner">
+        <div class="section-heading"><div><h2>Study planner</h2><p>Organize subjects, topics, and daily study targets.</p></div></div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>Add a subject to your plan</h3><p class="card-subtitle">Set a target and the date you want to be ready.</p>
+            <form id="subjectForm" class="form-grid">
+              <div class="field"><label for="subjectName">Subject</label><input id="subjectName" required maxlength="60" placeholder="e.g. Biology"></div>
+              <div class="field"><label for="subjectDate">Study date</label><input id="subjectDate" type="date" required></div>
+              <div class="field full"><label for="subjectTopics">Topics</label><input id="subjectTopics" required maxlength="180" placeholder="e.g. Cells, genetics, ecosystems"></div>
+              <div class="field"><label for="subjectTarget">Daily target (hours)</label><input id="subjectTarget" type="number" min="0.25" max="16" step="0.25" value="1" required></div>
+              <div class="form-actions"><button class="button">Add to planner</button></div>
+            </form>
+          </article>
+          <article class="card">
+            <h3>Planned subjects</h3><p class="card-subtitle">Your subjects and upcoming study dates.</p>
+            <div class="item-list" id="plannerList"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-tasks">
+        <div class="section-heading"><div><h2>Task manager</h2><p>Break your study goals into clear, doable steps.</p></div></div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>Create a task</h3><p class="card-subtitle">Add an assignment, revision goal, or reminder.</p>
+            <form id="taskForm" class="form-grid">
+              <div class="field full"><label for="taskTitle">Task</label><input id="taskTitle" required maxlength="120" placeholder="e.g. Review chapter 4 notes"></div>
+              <div class="field"><label for="taskSubject">Subject</label><select id="taskSubject"></select></div>
+              <div class="field"><label for="taskDue">Due date</label><input id="taskDue" type="date"></div>
+              <div class="form-actions"><button class="button">Add task</button></div>
+            </form>
+          </article>
+          <article class="card">
+            <h3>All tasks</h3><p class="card-subtitle" id="taskSummary">Your tasks will appear here.</p>
+            <div class="task-list" id="taskList"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-notes">
+        <div class="section-heading"><div><h2>Notes & flashcards</h2><p>Capture key ideas, then practise recalling them.</p></div></div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>Create a note or flashcard</h3><p class="card-subtitle">Choose flashcard to save a question and answer pair.</p>
+            <form id="noteForm" class="form-grid">
+              <div class="field"><label for="noteType">Type</label><select id="noteType"><option value="note">Quick note</option><option value="flashcard">Flashcard</option></select></div>
+              <div class="field"><label for="noteSubject">Subject</label><select id="noteSubject"></select></div>
+              <div class="field full"><label for="noteQuestion">Title or question</label><input id="noteQuestion" required maxlength="120" placeholder="e.g. What is photosynthesis?"></div>
+              <div class="field full"><label for="noteAnswer" id="noteAnswerLabel">Note or answer</label><textarea id="noteAnswer" required maxlength="1000" placeholder="Write a short note or the answer..."></textarea></div>
+              <div class="form-actions"><button class="button">Save</button></div>
+            </form>
+          </article>
+          <article class="card">
+            <h3>Flashcard practice</h3><p class="card-subtitle">Click the card to reveal the answer.</p>
+            <div class="flashcard" id="flashcard"><div><small>Ready when you are</small><strong>Add a flashcard to begin</strong></div></div>
+            <div class="flashcard-controls"><button class="text-button" id="prevCard">← Previous</button><span id="flashcardCount">0 cards</span><button class="text-button" id="nextCard">Next →</button></div>
+            <div class="section-heading" style="margin:22px 0 12px"><div><h3>Saved notes</h3></div></div>
+            <div class="item-list" id="notesList"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-quiz">
+        <div class="section-heading"><div><h2>Quiz mode</h2><p>Test your knowledge with a quick mixed-subject quiz.</p></div><button class="button secondary small" id="resetQuiz">New attempt</button></div>
+        <article class="card">
+          <h3>Knowledge check</h3><p class="card-subtitle">Choose one answer for each question, then check your score.</p>
+          <form id="quizForm">
+            <div id="quizQuestions"></div>
+            <button class="button" type="submit">Check my answers</button>
+            <div class="result" id="quizResult"></div>
+          </form>
+        </article>
+      </section>
+
+      <section class="view" id="view-progress">
+        <div class="section-heading"><div><h2>Your progress</h2><p>See how your study habits are growing over time.</p></div></div>
+        <div class="grid stats">
+          <article class="stat-card"><div class="stat-label">Tasks completed</div><div class="stat-value" id="progressTasks">0</div></article>
+          <article class="stat-card"><div class="stat-label">Tracked study time</div><div class="stat-value" id="progressHours">0h</div></article>
+          <article class="stat-card"><div class="stat-label">Quizzes completed</div><div class="stat-value" id="progressQuizzes">0</div></article>
+          <article class="stat-card"><div class="stat-label">Average quiz score</div><div class="stat-value" id="progressAverage">—</div></article>
+        </div>
+        <div class="grid two-col" style="margin-top:16px">
+          <article class="card"><h3>Study time · last 7 days</h3><p class="card-subtitle">Hours from completed focus sessions</p><div class="chart-wrap"><canvas id="studyChart" aria-label="Study time chart"></canvas></div></article>
+          <article class="card"><h3>Quiz scores</h3><p class="card-subtitle">Your recent quiz attempts</p><div class="chart-wrap"><canvas id="quizChart" aria-label="Quiz scores chart"></canvas></div></article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="active" data-view="dashboard"><span>⌂</span>Home</button>
+    <button data-view="planner"><span>▦</span>Plan</button>
+    <button data-view="tasks"><span>☑</span>Tasks</button>
+    <button data-view="notes"><span>▤</span>Notes</button>
+    <button data-view="quiz"><span>✎</span>Quiz</button>
+    <button data-view="progress"><span>▥</span>Progress</button>
+  </nav>
+
+  <script>
+    const STORAGE_KEY = "studymate.v1";
+    const defaultData = { subjects: [], tasks: [], notes: [], sessions: [], scores: [], dark: false };
+    const data = { ...defaultData, ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") };
+    let timerStartedAt = null;
+    let timerInterval = null;
+    let flashcardIndex = 0;
+    let showingAnswer = false;
+
+    const questions = [
+      { q: "Which cell structure is often called the powerhouse of the cell?", choices: ["Ribosome", "Mitochondrion", "Nucleus", "Golgi apparatus"], answer: 1 },
+      { q: "What is the value of 7 × 8?", choices: ["54", "56", "64", "48"], answer: 1 },
+      { q: "Which gas do plants absorb during photosynthesis?", choices: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], answer: 2 },
+      { q: "What is the past tense of the verb 'go'?", choices: ["Goed", "Gone", "Went", "Going"], answer: 2 },
+      { q: "Which planet is best known for its prominent rings?", choices: ["Mars", "Venus", "Saturn", "Mercury"], answer: 2 }
+    ];
+
+    const $ = (selector) => document.querySelector(selector);
+    const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[char]);
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function dateLabel(value) {
+      if (!value) return "No due date";
+      const date = new Date(value + "T00:00:00");
+      return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    }
+
+    function subjectName(id) {
+      return data.subjects.find((subject) => subject.id === id)?.name || "General";
+    }
+
+    function setOptions(select, includeGeneral) {
+      const currentValue = select.value;
+      select.innerHTML = (includeGeneral ? '<option value="">General</option>' : '<option value="">Choose a subject</option>')
+        + data.subjects.map((subject) => `<option value="${escapeHTML(subject.id)}">${escapeHTML(subject.name)}</option>`).join("");
+      if ([...select.options].some((option) => option.value === currentValue)) select.value = currentValue;
+    }
+
+    function renderSubjects() {
+      const list = $("#plannerList");
+      if (!data.subjects.length) {
+        list.innerHTML = '<div class="empty">No subjects yet. Add one to start planning.</div>';
+      } else {
+        list.innerHTML = data.subjects.map((subject) => `
+          <div class="planner-item">
+            <div class="planner-top">
+              <div><strong>${escapeHTML(subject.name)}</strong><p>${escapeHTML(subject.topics)}</p></div>
+              <button class="task-delete" data-delete-subject="${escapeHTML(subject.id)}" aria-label="Remove ${escapeHTML(subject.name)}">✕</button>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;margin-top:11px">
+              <span class="pill">${escapeHTML(dateLabel(subject.date))}</span>
+              <span class="pill">${escapeHTML(subject.target)}h daily</span>
+            </div>
+          </div>`).join("");
+      }
+
+      const selectors = ["#timerSubject", "#taskSubject", "#noteSubject"];
+      selectors.forEach((selector) => setOptions($(selector), selector !== "#timerSubject"));
+      $("#statSubjects").textContent = data.subjects.length;
+      const dashboard = $("#subjectProgress");
+      dashboard.innerHTML = data.subjects.length ? data.subjects.map((subject) => {
+        const target = Number(subject.target) || 1;
+        const today = new Date().toISOString().slice(0, 10);
+        const minutes = data.sessions.filter((session) => session.subjectId === subject.id && session.date === today)
+          .reduce((total, session) => total + session.minutes, 0);
+        const percent = Math.min(100, Math.round(minutes / (target * 60) * 100));
+        return `<div class="subject-row"><div class="subject-head"><strong>${escapeHTML(subject.name)}</strong><span>${(minutes / 60).toFixed(1)}h / ${escapeHTML(target)}h</span></div><div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div></div>`;
+      }).join("") : '<div class="empty">Your subjects will show here once you add them.</div>';
+    }
+
+    function taskHTML(task) {
+      return `<div class="task-item ${task.done ? "done" : ""}">
+        <input type="checkbox" data-task-toggle="${escapeHTML(task.id)}" ${task.done ? "checked" : ""} aria-label="Mark task complete">
+        <div class="task-copy"><strong>${escapeHTML(task.title)}</strong><span>${escapeHTML(subjectName(task.subjectId))} · ${escapeHTML(dateLabel(task.due))}</span></div>
+        <button class="task-delete" data-delete-task="${escapeHTML(task.id)}" aria-label="Delete task">✕</button>
+      </div>`;
+    }
+
+    function renderTasks() {
+      const pending = data.tasks.filter((task) => !task.done);
+      const completed = data.tasks.filter((task) => task.done);
+      $("#taskSummary").textContent = `${pending.length} pending · ${completed.length} completed`;
+      $("#taskList").innerHTML = data.tasks.length ? data.tasks.map(taskHTML).join("") : '<div class="empty">No tasks yet. Add your first study task.</div>';
+      $("#dashboardTasks").innerHTML = pending.length ? pending.slice(0, 4).map(taskHTML).join("") : '<div class="empty">You are all caught up. Nice work! 🎉</div>';
+      $("#statTasks").textContent = `${completed.length} / ${data.tasks.length}`;
+      $("#progressTasks").textContent = completed.length;
+    }
+
+    function renderNotes() {
+      const list = $("#notesList");
+      list.innerHTML = data.notes.length ? data.notes.map((note) => `
+        <div class="note-item">
+          <div class="planner-top"><h4>${note.type === "flashcard" ? "✦ " : "▤ "}${escapeHTML(note.question)}</h4><button class="task-delete" data-delete-note="${escapeHTML(note.id)}" aria-label="Delete note">✕</button></div>
+          <p>${escapeHTML(note.answer)}</p>
+          <div class="note-meta">${escapeHTML(subjectName(note.subjectId))} · ${note.type === "flashcard" ? "Flashcard" : "Note"}</div>
+        </div>`).join("") : '<div class="empty">No notes yet. Save a note or create a flashcard.</div>';
+      const cards = data.notes.filter((note) => note.type === "flashcard");
+      if (flashcardIndex >= cards.length) flashcardIndex = 0;
+      $("#flashcardCount").textContent = cards.length ? `${flashcardIndex + 1} of ${cards.length}` : "0 cards";
+      const card = cards[flashcardIndex];
+      $("#flashcard").innerHTML = card
+        ? `<div><small>${showingAnswer ? "Answer" : "Question"} · ${escapeHTML(subjectName(card.subjectId))}</small><strong>${escapeHTML(showingAnswer ? card.answer : card.question)}</strong></div>`
+        : '<div><small>Ready when you are</small><strong>Add a flashcard to begin</strong></div>';
+    }
+
+    function renderQuiz() {
+      $("#quizQuestions").innerHTML = questions.map((item, index) => `
+        <div class="quiz-question"><h4>${index + 1}. ${escapeHTML(item.q)}</h4>
+          ${item.choices.map((choice, choiceIndex) => `<label class="choice"><input type="radio" name="q${index}" value="${choiceIndex}"> ${escapeHTML(choice)}</label>`).join("")}
+        </div>`).join("");
+    }
+
+    function renderStats() {
+      const totalMinutes = data.sessions.reduce((total, session) => total + session.minutes, 0);
+      const hours = totalMinutes / 60;
+      $("#statHours").textContent = hours < 1 ? `${totalMinutes}m` : `${hours.toFixed(1)}h`;
+      $("#progressHours").textContent = `${hours.toFixed(1)}h`;
+      const latest = data.scores[data.scores.length - 1];
+      $("#statQuiz").textContent = latest ? `${latest.percent}%` : "—";
+      $("#progressQuizzes").textContent = data.scores.length;
+      const average = data.scores.length ? Math.round(data.scores.reduce((sum, score) => sum + score.percent, 0) / data.scores.length) : null;
+      $("#progressAverage").textContent = average === null ? "—" : `${average}%`;
+      const pending = data.tasks.filter((task) => !task.done).length;
+      $("#studyTip").textContent = pending
+        ? `You have ${pending} task${pending === 1 ? "" : "s"} pending. Try a focused 25-minute session on your next small step.`
+        : data.subjects.length
+          ? "Choose one subject from your planner and review a topic using your flashcards. Short, regular practice helps ideas stick."
+          : "Start by adding a subject to your planner. A clear, small goal is a great way to begin.";
+    }
+
+    function drawChart(canvas, values, labels, maxValue, suffix) {
+      const rect = canvas.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = Math.max(1, rect.width * ratio);
+      canvas.height = Math.max(1, rect.height * ratio);
+      const ctx = canvas.getContext("2d");
+      ctx.scale(ratio, ratio);
+      const width = rect.width, height = rect.height;
+      const style = getComputedStyle(document.body);
+      const muted = style.getPropertyValue("--muted").trim();
+      const line = style.getPropertyValue("--line").trim();
+      const primary = style.getPropertyValue("--primary").trim();
+      const left = 35, right = 9, top = 14, bottom = 28;
+      const plotW = width - left - right, plotH = height - top - bottom;
+      ctx.font = "10px system-ui";
+      ctx.textAlign = "right";
+      ctx.fillStyle = muted;
+      for (let i = 0; i <= 4; i++) {
+        const y = top + plotH - plotH * i / 4;
+        ctx.strokeStyle = line; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(width - right, y); ctx.stroke();
+        ctx.fillText(`${(maxValue * i / 4).toFixed(maxValue < 5 ? 1 : 0)}${suffix}`, left - 7, y + 3);
+      }
+      const step = plotW / Math.max(values.length, 1);
+      values.forEach((value, i) => {
+        const barW = Math.min(28, step * .55);
+        const barH = maxValue ? Math.max(value > 0 ? 3 : 0, plotH * value / maxValue) : 0;
+        const x = left + step * i + (step - barW) / 2;
+        const y = top + plotH - barH;
+        ctx.fillStyle = primary;
+        ctx.beginPath();
+        ctx.roundRect(x, y, barW, barH, [5, 5, 1, 1]);
+        ctx.fill();
+        ctx.textAlign = "center"; ctx.fillStyle = muted;
+        ctx.fillText(labels[i], x + barW / 2, height - 7);
+      });
+    }
+
+    function renderCharts() {
+      const today = new Date();
+      const days = [];
+      for (let offset = 6; offset >= 0; offset--) {
+        const day = new Date(today);
+        day.setDate(today.getDate() - offset);
+        const date = day.toISOString().slice(0, 10);
+        days.push({
+          date,
+          label: day.toLocaleDateString(undefined, { weekday: "short" }),
+          minutes: data.sessions.filter((session) => session.date === date).reduce((sum, session) => sum + session.minutes, 0)
+        });
+      }
+      const studyValues = days.map((day) => day.minutes / 60);
+      drawChart($("#studyChart"), studyValues, days.map((day) => day.label), Math.max(1, ...studyValues), "h");
+      const recent = data.scores.slice(-7);
+      const quizValues = recent.map((score) => score.percent);
+      drawChart($("#quizChart"), quizValues.length ? quizValues : [0], quizValues.length ? recent.map((_, i) => `#${i + 1}`) : [""], 100, "%");
+    }
+
+    function renderAll() {
+      renderSubjects();
+      renderTasks();
+      renderNotes();
+      renderStats();
+      renderCharts();
+    }
+
+    function showView(name) {
+      document.querySelectorAll(".view").forEach((view) => view.classList.toggle("active", view.id === `view-${name}`));
+      document.querySelectorAll("[data-view]").forEach((button) => button.classList.toggle("active", button.dataset.view === name));
+      const titles = { dashboard: "Good to see you!", planner: "Study planner", tasks: "Task manager", notes: "Notes & flashcards", quiz: "Quiz mode", progress: "Your progress" };
+      $("#pageTitle").textContent = titles[name] || "StudyMate";
+      if (name === "progress") requestAnimationFrame(renderCharts);
+    }
+
+    $("#todayLabel").textContent = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+    document.body.classList.toggle("dark", Boolean(data.dark));
+    $("#themeToggle").textContent = data.dark ? "☀" : "☾";
+
+    document.querySelectorAll("[data-view]").forEach((button) => button.addEventListener("click", () => showView(button.dataset.view)));
+    document.querySelectorAll("[data-go]").forEach((button) => button.addEventListener("click", () => showView(button.dataset.go)));
+
+    $("#themeToggle").addEventListener("click", () => {
+      data.dark = !data.dark;
+      document.body.classList.toggle("dark", data.dark);
+      $("#themeToggle").textContent = data.dark ? "☀" : "☾";
+      save();
+      renderCharts();
+    });
+
+    $("#subjectForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      data.subjects.push({
+        id: crypto.randomUUID(),
+        name: $("#subjectName").value.trim(),
+        topics: $("#subjectTopics").value.trim(),
+        date: $("#subjectDate").value,
+        target: Number($("#subjectTarget").value)
+      });
+      event.target.reset();
+      $("#subjectTarget").value = "1";
+      save(); renderAll();
+    });
+
+    $("#taskForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      data.tasks.unshift({
+        id: crypto.randomUUID(),
+        title: $("#taskTitle").value.trim(),
+        subjectId: $("#taskSubject").value,
+        due: $("#taskDue").value,
+        done: false
+      });
+      event.target.reset();
+      save(); renderAll();
+    });
+
+    $("#noteType").addEventListener("change", () => {
+      const isCard = $("#noteType").value === "flashcard";
+      $("#noteAnswerLabel").textContent = isCard ? "Answer" : "Note";
+      $("#noteAnswer").placeholder = isCard ? "Write the answer..." : "Write a short note...";
+    });
+
+    $("#noteForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      data.notes.unshift({
+        id: crypto.randomUUID(),
+        type: $("#noteType").value,
+        subjectId: $("#noteSubject").value,
+        question: $("#noteQuestion").value.trim(),
+        answer: $("#noteAnswer").value.trim()
+      });
+      event.target.reset();
+      $("#noteAnswerLabel").textContent = "Note or answer";
+      save(); renderAll();
+    });
+
+    document.addEventListener("change", (event) => {
+      const id = event.target.dataset.taskToggle;
+      if (!id) return;
+      const task = data.tasks.find((item) => item.id === id);
+      if (task) task.done = event.target.checked;
+      save(); renderAll();
+    });
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-delete-task], [data-delete-note], [data-delete-subject]");
+      if (!button) return;
+      if (button.dataset.deleteTask) data.tasks = data.tasks.filter((item) => item.id !== button.dataset.deleteTask);
+      if (button.dataset.deleteNote) data.notes = data.notes.filter((item) => item.id !== button.dataset.deleteNote);
+      if (button.dataset.deleteSubject) {
+        const id = button.dataset.deleteSubject;
+        data.subjects = data.subjects.filter((item) => item.id !== id);
+        data.tasks.forEach((task) => { if (task.subjectId === id) task.subjectId = ""; });
+        data.notes.forEach((note) => { if (note.subjectId === id) note.subjectId = ""; });
+      }
+      save(); renderAll();
+    });
+
+    function elapsedSeconds() {
+      return timerStartedAt ? Math.floor((Date.now() - timerStartedAt) / 1000) : 0;
+    }
+    function updateTimer() {
+      const seconds = elapsedSeconds();
+      const hours = String(Math.floor(seconds / 3600)).padStart(2, "0");
+      const minutes = String(Math.floor(seconds % 3600 / 60)).padStart(2, "0");
+      const remainder = String(seconds % 60).padStart(2, "0");
+      $("#timerDisplay").textContent = `${hours}:${minutes}:${remainder}`;
+    }
+    $("#timerStart").addEventListener("click", () => {
+      if (timerStartedAt) return;
+      timerStartedAt = Date.now();
+      $("#timerStart").disabled = true;
+      $("#timerStop").disabled = false;
+      timerInterval = setInterval(updateTimer, 1000);
+    });
+    $("#timerStop").addEventListener("click", () => {
+      if (!timerStartedAt) return;
+      const seconds = elapsedSeconds();
+      const minutes = Math.max(1, Math.round(seconds / 60));
+      data.sessions.push({
+        id: crypto.randomUUID(),
+        subjectId: $("#timerSubject").value,
+        date: new Date().toISOString().slice(0, 10),
+        minutes
+      });
+      timerStartedAt = null;
+      clearInterval(timerInterval);
+      $("#timerStart").disabled = false;
+      $("#timerStop").disabled = true;
+      $("#timerDisplay").textContent = "00:00:00";
+      save(); renderAll();
+    });
+
+    $("#flashcard").addEventListener("click", () => {
+      if (!data.notes.some((note) => note.type === "flashcard")) return;
+      showingAnswer = !showingAnswer; renderNotes();
+    });
+    function moveCard(direction) {
+      const cards = data.notes.filter((note) => note.type === "flashcard");
+      if (!cards.length) return;
+      flashcardIndex = (flashcardIndex + direction + cards.length) % cards.length;
+      showingAnswer = false; renderNotes();
+    }
+    $("#prevCard").addEventListener("click", () => moveCard(-1));
+    $("#nextCard").addEventListener("click", () => moveCard(1));
+
+    function resetQuiz() {
+      $("#quizResult").classList.remove("show");
+      renderQuiz();
+    }
+    $("#resetQuiz").addEventListener("click", resetQuiz);
+    $("#quizForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      let correct = 0;
+      questions.forEach((question, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected && Number(selected.value) === question.answer) correct++;
+      });
+      const percent = Math.round(correct / questions.length * 100);
+      data.scores.push({ date: new Date().toISOString(), percent, correct, total: questions.length });
+      $("#quizResult").textContent = `You got ${correct} out of ${questions.length} correct — ${percent}%. ${percent === 100 ? "Perfect score! 🎉" : "Keep practising; every attempt helps."}`;
+      $("#quizResult").classList.add("show");
+      save(); renderStats(); renderCharts();
+    });
+
+    window.addEventListener("resize", () => {
+      if ($("#view-progress").classList.contains("active")) renderCharts();
+    });
+
+    renderQuiz();
+    renderAll();
+  </script>
+</body>
+</html>
